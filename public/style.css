@@ -7,6 +7,10 @@ div.active {
   background-color: rgb(101, 251, 251);
 }
 
+div.inactive {
+  display: none;
+}
+
 img.bigcoin {
   width: 50px;
 }
@@ -27,9 +31,4 @@ body {
 h1 {
   color: navy;
   /* text-align: center; */
-}
-
-hr.rounded {
-  border-top: 4px solid #bbb;
-  border-radius: 5px;
 }
