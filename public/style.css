@@ -3,7 +3,8 @@ div.hidden {
 }
 
 div.active {
-  border: 5px solid red;
+  /* border: 5px solid red; */
+  background-color: rgb(101, 251, 251);
 }
 
 img.bigcoin {
@@ -12,4 +13,23 @@ img.bigcoin {
 
 img.smallcoin {
   width: 50px;
+}
+
+ul li{
+  display: inline;
+}
+
+body {
+  background-color: rgb(177, 255, 255);
+  text-align: center;
+}
+
+h1 {
+  color: navy;
+  /* text-align: center; */
+}
+
+hr.rounded {
+  border-top: 4px solid #bbb;
+  border-radius: 5px;
 }
