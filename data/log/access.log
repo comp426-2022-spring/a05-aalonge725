@@ -1,1 +1,5 @@
-// This is where an access log would be created
+::1 - - [30/Apr/2022:18:08:40 +0000] "GET /app/log/access/ HTTP/1.1" 200 208 "-" "curl/7.77.0"
+::1 - - [30/Apr/2022:18:09:20 +0000] "HEAD /app/log/access/ HTTP/1.1" 200 416 "-" "curl/7.77.0"
+::1 - - [30/Apr/2022:18:10:16 +0000] "HEAD /app/error HTTP/1.1" 500 1497 "-" "curl/7.77.0"
+::1 - - [30/Apr/2022:18:10:41 +0000] "GET /app/error HTTP/1.1" 500 1497 "-" "curl/7.77.0"
+::1 - - [30/Apr/2022:18:21:20 +0000] "GET /app/log/access HTTP/1.1" 200 1025 "-" "curl/7.77.0"
