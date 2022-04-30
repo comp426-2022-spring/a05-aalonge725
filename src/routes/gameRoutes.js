@@ -3,10 +3,8 @@ const router = express.Router()
 const coin = require('../utils/utilities.js')
 
 router.get('/app/', (req, res) => {
-    res.statusCode = 200
-    res.statusMessage = "OK"
-    res.writeHead(res.statusCode, {'Content-Type': 'text/plain'})
-    res.end(res.statusCode + ' ' + res.statusMessage)
+    res.json({'message':'Your API works! (200)'})
+    res.status(200)
 })
 
 router.get('/app/flip/', (req, res) => {
