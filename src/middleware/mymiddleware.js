@@ -1,7 +1,6 @@
 const db = require('../services/database.js')
 
 function log(req, res, next) {
-    console.log('test')
     let logdata = {
         remoteaddr: req.ip,
         remoteuser: req.user,
