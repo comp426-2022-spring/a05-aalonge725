@@ -29,10 +29,11 @@ if (args.help || args.h) {
 const express = require('express')
 const app = express()
 
-// Require fs and coin.js module
+// Require fs, morgan, and coin flip module
 const fs = require('fs')
-const coin = require('./coin.js') /* ************************* */
+const coin = require('./src/utils/utilities.js') /* ************************* */
 
+// Start server
 const port = args.port || process.env.PORT || 5555
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
@@ -41,6 +42,15 @@ const server = app.listen(port, () => {
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+// Log middleware
+const middleware = require('./src/middleware/mymiddleware.js')
+app.use(middleware.log)
+
+if (args.log != "false" && args.log != false) {
+    const writeStream = fs.createWriteStream('access.log', {flags: 'a'})
+    app.use(morgan('combined', {stream: writeStream}))
+}
 
 /*
 const db = require('./database.js')
