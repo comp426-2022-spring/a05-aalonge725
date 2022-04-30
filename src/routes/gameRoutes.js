@@ -14,10 +14,21 @@ router.get('/app/flip/', (req, res) => {
     res.status(200).json({'flip': flip})
 })
 
+router.post('/app/flip/coins/', (req, res, next) => {
+    const flipResult = coin.coinFlips(req.body.number)
+    const summary = coin.countFlips(flipResult)
+    res.status(200).json({"raw":flipResult,"summary":summary})
+})
+
 router.get('/app/flips/:number', (req, res) => {
     var flipResult = coin.coinFlips(req.params.number)
     var summary = coin.countFlips(flipResult)
     res.status(200).json({'raw': flipResult, 'summary': summary})
+})
+
+router.post('/app/flip/call/', (req, res, next) => {
+    const guess = coin.flipACoin(req.body.guess)
+    res.status(200).json(guess)
 })
 
 router.get('/app/flip/call/heads', (req, res) => {
