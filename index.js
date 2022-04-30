@@ -51,83 +51,14 @@ app.use(middleware.log)
 
 // Log command line argument
 if (args.log != "false" && args.log != false) {
-    const writeStream = fs.createWriteStream('access.log', {flags: 'a'})
+    const writeStream = fs.createWriteStream('./data/log/access.log', {flags: 'a'})
     app.use(morgan('combined', {stream: writeStream}))
 }
 
 // Debug command line argument
 if (args.debug == true) {
-    app.use(require('./src/routes/debugRoutes'))
+    app.use(require('./src/routes/debugRoutes.js'))
 }
 
-/*
-const db = require('./database.js')
-
-const morgan = require('morgan')
-
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-
-if (args.debug == true) {
-    app.get('/app/log/access', (req, res) => {
-        const stmt = db.prepare('SELECT * FROM accesslog').all()
-        res.status(200).json(stmt)
-    })
-    app.get('/app/error', (req, res) => {
-        throw new Error("Error test successful.")
-    })
-}
-
-if (args.log != "false" && args.log != false) {
-    const writeStream = fs.createWriteStream('access.log', {flags: 'a'})
-    app.use(morgan('combined', {stream: writeStream}))
-}
-
-app.use((req, res, next) => {
-    let logdata = {
-        remoteaddr: req.ip,
-        remoteuser: req.user,
-        time: Date.now(),
-        method: req.method,
-        url: req.url,
-        protocol: req.protocol,
-        httpversion: req.httpVersion,
-        status: res.statusCode,
-        referer: req.headers['referer'],
-        useragent: req.headers['user-agent']
-    }
-
-    const stmt = db.prepare(`INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-    const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status, logdata.referer, logdata.useragent)
-    next()
-})
-
-app.get('/app/', (req, res) => {
-    res.statusCode = 200
-    res.statusMessage = "OK"
-    res.writeHead(res.statusCode, {'Content-Type': 'text/plain'})
-    res.end(res.statusCode + ' ' + res.statusMessage)
-})
-
-app.get('/app/flip/', (req, res) => {
-    var flip = coin.coinFlip()
-    res.status(200).json({'flip': flip})
-})
-
-app.get('/app/flips/:number', (req, res) => {
-    var flipResult = coin.coinFlips(req.params.number)
-    var summary = coin.countFlips(flipResult)
-    res.status(200).json({'raw': flipResult, 'summary': summary})
-})
-
-app.get('/app/flip/call/heads', (req, res) => {
-    res.status(200).json(coin.flipACoin('heads'))
-})
-
-app.get('/app/flip/call/tails', (req, res) => {
-    res.status(200).json(coin.flipACoin('tails'))
-})
-
-app.use(function (req, res) {
-    res.status(404).send('404 NOT FOUND')
-}) */
+// Access to coin flip endpoints
+app.use(require('./src/routes/gameRoutes.js'))
