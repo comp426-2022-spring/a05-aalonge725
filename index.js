@@ -31,6 +31,7 @@ const app = express()
 
 // Require fs, morgan, and coin flip module
 const fs = require('fs')
+const morgan = require('morgan')
 const coin = require('./src/utils/utilities.js') /* ************************* */
 
 // Start server
@@ -42,14 +43,21 @@ const server = app.listen(port, () => {
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+const routes = require('./src/routes/debugRoutes.js')
 
 // Log middleware
 const middleware = require('./src/middleware/mymiddleware.js')
 app.use(middleware.log)
 
+// Log command line argument
 if (args.log != "false" && args.log != false) {
     const writeStream = fs.createWriteStream('access.log', {flags: 'a'})
     app.use(morgan('combined', {stream: writeStream}))
+}
+
+// Debug command line argument
+if (args.debug == true) {
+    app.use(require('./src/routes/debugRoutes'))
 }
 
 /*
