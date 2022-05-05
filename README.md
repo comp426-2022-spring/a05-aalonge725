@@ -84,19 +84,26 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5555/app/flip/
 ```
 
 #### Response body
 
 ```
-
+{"flip":"tails"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 16
+ETag: W/"10-N9e0DDykqBPnqphc8f4bzHcjsuM"
+Date: Sat, 30 Apr 2022 17:58:47 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flips/:number/ (GET)
@@ -104,39 +111,26 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5555/app/flips/5
 ```
 
 #### Response body
 
 ```
-
+{"raw":["heads","tails","tails","heads","heads"],"summary":{"tails":2,"heads":3}}
 ```
 
 #### Response headers
 
 ```
-
-```
-
-### /app/flip/coin/ (GET)
-
-#### Request cURL
-
-```
-
-```
-
-#### Response body
-
-```
-
-```
-
-#### Response headers
-
-```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 81
+ETag: W/"51-ZzERhXXGhA4fO+44ygeuTkAPVdo"
+Date: Sat, 30 Apr 2022 17:59:53 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/call/:guess/ (GET)
@@ -144,19 +138,26 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5555/app/flip/call/heads
 ```
 
 #### Response body
 
 ```
-
+{"call":"heads","flip":"heads","result":"win"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 47
+ETag: W/"2f-7jHpBxeRlMwmX45a5nEiITPVllI"
+Date: Sat, 30 Apr 2022 18:04:46 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/call/ (POST)
@@ -218,61 +219,65 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5555/app/log/access/
 ```
 
 #### Response body
 
 ```
-
+[{"id":1,"remoteaddr":"::1","remoteuser":null,"time":"1651342120409.0","method":"GET","url":"/app/log/access/","protocol":"http","httpversion":"1.1","status":"200.0","referer":null,"useragent":"curl/7.77.0"}]
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 416
+ETag: W/"1a0-/2DtKTls56kor1kFJ2Ni/c+BYa8"
+Date: Sat, 30 Apr 2022 18:09:20 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
-### /app/log/access/ (GET)
-
-#### Request cURL
-
-```
-
-```
-
-#### Response body
-
-```
-
-```
-
-#### Response headers
-
-```
-
-```
-
-### /app/log/error/ (GET)
+### /app/error/ (GET)
 
 _Not yet implemented_
 
 #### Request cURL
 
 ```
-
+curl -I http://localhost:5555/app/error
 ```
 
 #### Response body
 
 ```
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Error: Error test successful.<br> &nbsp; &nbsp;at /Users/abraham/Desktop/Github/COMP426/a05-aalonge725/src/routes/debugRoutes.js:10:11<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/route.js:144:13)<br> &nbsp; &nbsp;at Route.dispatch (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/route.js:114:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at /Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/index.js:284:15<br> &nbsp; &nbsp;at Function.process_params (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/index.js:346:12)<br> &nbsp; &nbsp;at next (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/index.js:280:10)<br> &nbsp; &nbsp;at Function.handle (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/index.js:175:3)<br> &nbsp; &nbsp;at router (/Users/abraham/Desktop/Github/COMP426/a05-aalonge725/node_modules/express/lib/router/index.js:47:12)</pre>
+</body>
+</html>
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 500 Internal Server Error
+X-Powered-By: Express
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 1497
+Date: Sat, 30 Apr 2022 18:10:16 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/user/login/ (POST)
